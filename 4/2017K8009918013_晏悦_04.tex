@@ -1,0 +1,75 @@
+\documentclass{ctexart}
+\usepackage[utf8]{inputenc}
+
+\title{AI-homework3}
+\author{晏悦 2017K8009918013}
+\date{September 2019}
+
+\begin{document}
+
+\maketitle
+
+请证明$\frac{1}{N}\Sigma_{i=1}^N I(f(x_i) \not= y_i) \leq exp(-2\Sigma_{k=1}^K\gamma_k^2)$，其中$\gamma_k=\frac{1}{2}-e_k$
+
+证明：
+
+1.首先证明$\Pi_{k=1}^K\sqrt{1-4\gamma_k^2}\leq \exp(-2\Sigma_{k=1}^K \gamma_k^2)$
+
+不妨设$x_k = \gamma_k^2$，由于$\gamma_k\in(0,\frac{1}{2})$,所以$x_k\in(0,\frac{1}{4})$.
+
+两边同时去对数ln
+
+得到$\Sigma_{k=1}^K \sqrt{1-4x_k} \leq -2\Sigma x_k$
+
+即证$f(x) = \sqrt{1-4x}+2x \leq 0$ 对x恒成立。
+
+对函数求导，导函数恒＜0，$f(x)\leq f(0) = 0$成立
+
+
+
+2.接下来证明$\frac{1}{N}\Sigma_{i=1}^N I(f(x_i) \not= y_i) \leq \Pi_{k=1}^K\sqrt{1-4\gamma_k^2}$
+
+显然$I(f(x_i)\not=y_i) < \exp(-y_i*f(x_i))$
+
+并且由于$f(x_i)=sign(\Sigma_k\alpha_k*f_k(x_i))$
+
+所以
+
+$\frac{1}{N} \Sigma_{i=1}^N I(f(x_i) \not= y_i)$ 
+
+$<\frac{1}{N}  \Sigma_{i=1}^N  \exp(-y_i f(x_i))$
+
+$=\frac{1}{N}\Sigma_{i=1}^N \exp(-y_i \Sigma_k\alpha_k*f_k(x_i))$
+
+$=\frac{1}{N}\Sigma_{i=1}^N \Pi_k\exp(-y_i \alpha_k*f_k(x_i)$
+
+由于$d_{0,i} = \frac{1}{N}$,且$d_{k-1,i} \exp(-\alpha_k y_i f_k(x_i))= Z_k d_{k,i}$
+
+所以上式等于
+
+$=Z_1 \Pi_{k=2}^K \exp(-y_i \alpha_k*f_k(x_i)$
+
+$=Z_1 Z_2 \Pi_{k=3}^K \exp(-y_i \alpha_k*f_k(x_i)$
+
+$=\Pi_{k=1}^K Z_k$
+
+又因为$d_{k-1,i} \exp(-\alpha_k y_i f_k(x_i))= Z_k d_{k,i}$，其中$d_{k,i}$满足归一化条件
+
+左右两边对i求和
+
+得到$Z_k = \Sigma_id_{k-1,i} \exp(-\alpha_k y_i f_k(x_i))$
+
+$=\Sigma_{y_i = f_k(x_i)} d_{k-1,i} \exp(-\alpha_k ) + \Sigma_{y_i \not= f_k(x_i)} d_{k-1,i} \exp(\alpha_k)$
+
+$=(1-e_k) e^{-\alpha_k} + e_k e^{\alpha_k}$
+
+其中$e_k = \Sigma_i d_{k-1,i} (y_i \not= f_k(x_i))$
+
+$=2\sqrt{e_k(1-e_k)}$
+
+$=\sqrt{1-4\gamma_k}$
+
+两边同时对k求连续乘，得到要证明的不等式，证明完毕！
+
+
+\end{document}

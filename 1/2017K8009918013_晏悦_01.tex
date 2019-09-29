@@ -1,0 +1,39 @@
+\documentclass{ctexart}
+\usepackage[utf8]{inputenc}
+
+\title{AI-homework1}
+\author{晏悦 2017K8009918013}
+\date{August 30 2019}
+
+\begin{document}
+
+\maketitle
+证明Gain(X,Y) = H(Y) - H(Y,X)>0.
+
+证明:
+
+由于先获取X的信息熵，再获取基于X的Y的信息熵，等价于先获取Y的信息熵，再获取X的信息熵，所以：
+\[H(X,Y) = H(X) + H(X|Y) = H(Y) + H(Y|X)\]
+
+Gain(X,Y) = H(Y) - H(Y|X) = \Sigma_y p(y)*log(p(y)) + \Sigma_x p(x)\Sigma _y p(y|x)log(p(y|x))
+
+=H(X) - H(X|Y) = \Sigma_x p(x)*log(p(x)) + \Sigma_y p(y)\Sigma _x p(x|y)log(p(x|y))
+
+=H(X) + H(Y) - H(X,Y) = \Sigma_x\Sigma_y p(x,y)*(-log(p(x) - log(p(y) + log(p(x,y)))
+
+=\Sigma_x\Sigma_y p(x,y)*log(\frac{p(x,y)}{p(x)p(y)})
+
+=D(P(X,Y)||P(X)P(Y))
+
+其中D是KL散度公式，那么只用证明KL散度大于零即可
+
+D(P||Q) = \Sigma_x p(x)log(\frac{p(x)}{q(x)})
+
+>=-log(\Sigma_x p(x)*\frac{q(x)}{p(x)})
+
+(这一步由Jensen不等式得到)
+
+=0
+
+所以证明完毕，信息熵增量大于等于0，其中为0时，当且仅当X，Y独立。
+\end{document}
