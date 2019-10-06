@@ -1,0 +1,26 @@
+\documentclass[]{article}
+
+
+%opening
+\title{AI homework8}
+\author{yanyue 2017K8009918013}
+
+\begin{document}
+
+\maketitle
+
+\section{}
+we need to maximaze the function
+\\$L = \Pi_i^N\Pi_j^N p(w_i,w'_j)^{c_{ij}(w_i,w'_j)}$
+\\$ln(L) = \ln(\Sigma_i\Sigma_j c_{ij}p(w_i,w'_j))$
+\\$ln(L) = \ln(\Sigma_i\Sigma_j c_{ij} \Sigma_kp(w_i,w'_j,z_k))$
+\\$ln(L) \geq \Sigma_i\Sigma_j c_{ij} \Sigma_k Q(z_k) \ln(p(w_i,w'_j,z_k) - Const$
+\\$ln(L) \geq \Sigma_i\Sigma_j c_{ij} \Sigma_k Q(z_k) [lnP(z_k) + lnP(w_i|z_k) + lnP(w'_j|z_k)] - Const$
+\section{}
+$Q(z_k) = P(z_k|w_i,w'_j)$
+\\$Q(z_k) = \frac{P(w_i,w'_j,z_k)}{P(w_i,w'_j)}$
+\\$Q(z_k) = \frac{P(w_i,w'_j,z_k)}{\Sigma_kP(w_i,w'_j,z_k)}$
+\\$Q(z_k) = \frac{P(z_k)P(w_i|z_k)P(w'_j|z_k)}{\Sigma_kP(z_k)P(w_i|z_k)P(w'_j|z_k)}$
+
+
+\end{document}
